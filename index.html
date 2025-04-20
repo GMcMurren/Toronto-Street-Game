@@ -8,8 +8,8 @@
 <body>
   <h1>The Toronto Streets Guessing Game!</h1>
   <h2>I've had this idea for a while now, but I finally thought the time had come to test it out. A few guidelines:</h2>
-  <h3>You need the full name, unless the street is one of these types: Acres, Alley, Avenue, Boulevard, Byway, Circuit, Close, Court, Crescent, Drive, Expressway, Gardens, Gate, Grove, Heights, Hill, Keep, Lane, Laneway, Lawn, Manor, Mews, Overpass, Park, Parkway, Path, Pathway, Place, Plaza, Point, Quay, Ridge, Road, Roadway, Square, Street, Terrace, Trail, Walk, Walkway, Way, Wharf, and Wood.</h3>
-  <h3>A note about "Way": a bunch of private streets in North York are sometimes labeled "Way" with a prefix. Most of these flow well if you split the prefix, so you have to guess the street name and the prefix for these! As a goodwill gesture you only need the street names for "-ways" with these types: Carseway, Shepway, and Starway.</h3>
+  <h3>In most cases, you'll only need the street name, not the type (e.g. road). Highways and streets with no obvious type are the exception. (The hoverable names will be a little funky for those ones.)</h3>
+  <h3>A note about the type "Way": a bunch of private streets in North York are labeled "Way" with a prefix. I've split the prefixes for these (except Carseway, Shepway, and Starway), so you have to guess the street name and prefix together!</h3>
   <h3>Oh, one last thing: all numbered streets are written with letters and no hyphens, because that's how the City does it. Have fun!</h3>
   <input type="text" id="streetInput" placeholder="Type a street name..." />
   <p id="progress">0 streets guessed</p>
@@ -17,8 +17,18 @@
     <div id="progress-bar"></div>
     </div>
   <div id="map"></div>
+  <div id="progress" style="margin-top: 10px;"></div>
+<div style="width: 100%; background: #ccc; height: 10px; border-radius: 5px; margin-bottom: 10px;">
+  <div id="progress-bar" style="height: 10px; background: green; width: 0%; border-radius: 5px;"></div>
+</div>
+
+<h3>Guessed Streets</h3>
+<ul id="guessed-list" style="max-height: 200px; overflow-y: auto; padding-left: 20px;"></ul>
 
   <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
   <script src="toronto_script.js"></script>
 </body>
 </html>
+<div id="sort-controls">
+  <button id="sort-toggle">Sort by: Alphabetical</button>
+</div>
