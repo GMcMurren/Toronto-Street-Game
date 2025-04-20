@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let guessedLength = 0;
   let sortMode = 'recency';
 
-  fetch("Toronto_Streets_Data_Final.json")
+  fetch("Toronto_Streets_Data_Final.geojson")
     .then(res => res.json())
     .then(data => {
       L.geoJSON(data, {
