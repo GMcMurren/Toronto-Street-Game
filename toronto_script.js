@@ -98,9 +98,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         layers.forEach(layer => {
           layer.setStyle({ color: "#007700", weight: 3 });
-          altNames.forEach(alt => {
-            const altLower = alt.toLowerCase();
-            layer.bindTooltip(alt);
+          const featureAlt = layer.feature.properties.LINEAR_4?.trim();
+          if (featureAlt) {
+            layer.bindTooltip(featureAlt);
+          };
           });
         });
 
