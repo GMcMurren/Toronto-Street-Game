@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Toronto Street Guesser</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+</head>
+<body>
+  <h1>The Toronto Streets Guessing Game!</h1>
+  <h2>I've had this idea for a while now, but I finally thought the time had come to test it out. A few guidelines:</h2>
+  <h3>You need the full name, unless the street is one of these types: Acres, Alley, Avenue, Boulevard, Byway, Circuit, Close, Court, Crescent, Drive, Expressway, Gardens, Gate, Grove, Heights, Hill, Keep, Lane, Laneway, Lawn, Manor, Mews, Overpass, Park, Parkway, Path, Pathway, Place, Plaza, Point, Quay, Ridge, Road, Roadway, Square, Street, Terrace, Trail, Walk, Walkway, Way, Wharf, and Wood.</h3>
+  <h3>A note about "Way": a bunch of private streets in North York are sometimes labeled "Way" with a prefix. Most of these flow well if you split the prefix, so you have to guess the street name and the prefix for these! As a goodwill gesture you only need the street names for "-ways" with these types: Carseway, Shepway, and Starway.</h3>
+  <h3>Oh, one last thing: all numbered streets are written with letters and no hyphens, because that's how the City does it. Have fun!</h3>
+  <input type="text" id="streetInput" placeholder="Type a street name..." />
+  <p id="progress">0 streets guessed</p>
+  <div id="progress-container">
+    <div id="progress-bar"></div>
+    </div>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <script src="toronto_script.js"></script>
+</body>
+</html>
