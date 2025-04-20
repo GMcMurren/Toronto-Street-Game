@@ -101,8 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const featureAlt = layer.feature.properties.LINEAR_4?.trim();
           if (featureAlt) {
             layer.bindTooltip(featureAlt);
-          };
-          });
+          }
         });
 
         for (const alt of altNames) {
