@@ -103,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
             layer.bindTooltip(featureAlt, { sticky : true });
           }
         });
-
         for (const alt of altNames) {
           const altLower = alt.toLowerCase();
           if (!guessedAltNameSet.has(altLower)) {
