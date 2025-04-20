@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }).addTo(map);
 
   let guessed = new Set();
-  let guessedAltNames = [];
+  let guessedAltNames = []; // For guessed LINEAR_4 values
   let guessedAltNameSet = new Set();
-  let altNameCasing = new Map();
-  let allStreets = new Map();
+  let altNameCasing = new Map(); // lowercase → original casing
+  let allStreets = new Map(); // name (LINEAR_5) → { layers: [...], length, altNames: Set }
   let totalLength = 0;
   let guessedLength = 0;
   let sortMode = 'recency';
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const altLower = alt.toLowerCase();
           if (!guessedAltNameSet.has(altLower)) {
             guessedAltNameSet.add(altLower);
-            guessedLength += allStreets.get(input).length / altNames.size;
+            guessedLength += allStreets.get(input).length / altNames.size; // Evenly distribute length if multiple alts
           }
           if (!altNameCasing.has(altLower)) {
             altNameCasing.set(altLower, alt);
