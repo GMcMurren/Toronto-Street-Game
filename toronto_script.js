@@ -108,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
           const altLower = alt.toLowerCase();
           if (!guessedAltNameSet.has(altLower)) {
             guessedAltNameSet.add(altLower);
-            guessedLength += allStreets.get(input).length / altNames.size; // Evenly distribute length if multiple alts
           }
           if (!altNameCasing.has(altLower)) {
             altNameCasing.set(altLower, alt);
