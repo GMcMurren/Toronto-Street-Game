@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
           layer.setStyle({ color: "#007700", weight: 3 });
           const featureAlt = layer.feature.properties.LINEAR_4?.trim();
           if (featureAlt) {
-            layer.bindTooltip(featureAlt);
+            layer.bindTooltip(featureAlt, { sticky : true });
           }
         });
 
