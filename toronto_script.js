@@ -165,4 +165,23 @@ document.addEventListener('DOMContentLoaded', () => {
     renderGuessedList();
     updateProgress();
   }
+  document.getElementById('resetProgress').addEventListener('click', () => {
+    if (!confirm("Are you sure you want to reset all your progress? This cannot be undone.")) return;
+  
+    guessed.clear();
+    guessedAltNames = [];
+    guessedAltNameSet.clear();
+    guessedLength = 0;
+  
+    // Reset styles on map
+    for (const { layers } of allStreets.values()) {
+      layers.forEach(layer => layer.setStyle({ color: "#666", weight: 1 }));
+    }
+  
+    renderGuessedList();
+    updateProgress();
+  
+    // Clear local storage for this user
+    localStorage.removeItem(`torontoProgress-${currentUser}`);
+  });
 });
