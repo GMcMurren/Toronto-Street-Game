@@ -3,7 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
   }).addTo(map);
-
+  let currentUser = localStorage.getItem('torontoUsername');
+  if (!currentUser) {
+    currentUser = prompt("Enter your username to start or resume your game:");
+    if (currentUser) {
+      localStorage.setItem('torontoUsername', currentUser);
+    } else {
+      alert("You must enter a username to continue.");
+      return;
+    }
+  }
   let guessed = new Set();
   let guessedAltNames = []; // For guessed LINEAR_4 values
   let guessedAltNameSet = new Set();
@@ -41,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         renderer: L.canvas(),
       }).addTo(map);
+      loadProgress();
     });
 
   function addToGuessedList(name) {
@@ -113,10 +123,46 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           addToGuessedList(altLower);
         }
-
         updateProgress();
+        saveProgress();
       }
       e.target.value = '';
     }
   });
+  function saveProgress() {
+    const state = {
+      guessed: [...guessed],
+      guessedAltNames,
+      guessedAltNameSet: [...guessedAltNameSet],
+      guessedLength
+    };
+    localStorage.setItem(`torontoProgress-${currentUser}`, JSON.stringify(state));
+  }
+  function loadProgress() {
+    const state = JSON.parse(localStorage.getItem(`torontoProgress-${currentUser}`));
+    if (!state) return;
+
+    guessed = new Set(state.guessed);
+    guessedAltNames = state.guessedAltNames || [];
+    guessedAltNameSet = new Set(state.guessedAltNameSet || []);
+    guessedLength = state.guessedLength || 0;
+
+    for (const name of guessed) {
+      const entry = allStreets.get(name);
+      if (entry) {
+        entry.layers.forEach(layer =>
+          layer.setStyle({ color: "#007700", weight: 3 })
+        );
+      }
+    }
+
+    for (const alt of guessedAltNameSet) {
+      if (!altNameCasing.has(alt)) {
+        altNameCasing.set(alt, alt); // fallback
+      }
+    }
+
+    renderGuessedList();
+    updateProgress();
+  }
 });
