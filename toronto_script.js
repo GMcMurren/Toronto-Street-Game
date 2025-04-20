@@ -8,14 +8,14 @@ let allStreets = new Map(); // name → { layers: [...], length: total length }
 let totalLength = 0;
 let guessedLength = 0;
 
-fetch("Toronto_Final_Streets.geojson")
+fetch("Toronto_Streets_Data.geojson")
   .then(res => res.json())
   .then(data => {
     L.geoJSON(data, {
       style: { color: "#666", weight: 1 },
       onEachFeature: (feature, layer) => {
         const name = feature.properties.LINEAR_5?.trim().toLowerCase();
-        const length = feature.properties.SHAPE_Length || 0;
+        const length = feature.properties.Length || 0;
 
         if (!name || name.length < 2) return;
 
