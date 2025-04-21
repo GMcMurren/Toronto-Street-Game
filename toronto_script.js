@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!altNameCasing.has(altLower)) {
             altNameCasing.set(altLower, alt);
           }
-          addToGuessedList(altLower);
+          addToGuessedList(alt);
         }
         updateProgress();
         saveProgress();
